@@ -149,17 +149,7 @@
 
 <!-- 모바일 버튼: 좌우이동 + 자동발사 토글 -->
 <div id="mobile-controls">
-  <!-- 왼손: 일시정지 + 발사 -->
-  <div class="mob-side">
-    <div>
-      <button class="mob-btn" id="pause-btn" onclick="togglePause()" style="font-size:13px;letter-spacing:1px;color:#ffe600;border-color:rgba(255,230,0,0.4);background:rgba(255,230,0,0.06);">⏸<br><span style="font-size:9px">정지</span></button>
-    </div>
-    <div>
-      <button class="mob-btn" id="fire-btn">FIRE</button>
-      <div class="mob-label">꾹=연사</div>
-    </div>
-  </div>
-  <!-- 오른손: 좌우 이동 -->
+  <!-- 왼손: 좌우 이동 -->
   <div class="mob-side">
     <div>
       <button class="mob-btn" id="left-btn">◀</button>
@@ -168,6 +158,16 @@
     <div>
       <button class="mob-btn" id="right-btn">▶</button>
       <div class="mob-label">RIGHT</div>
+    </div>
+  </div>
+  <!-- 오른손: 발사 + 일시정지 -->
+  <div class="mob-side">
+    <div>
+      <button class="mob-btn" id="fire-btn">FIRE</button>
+      <div class="mob-label">꾹=연사</div>
+    </div>
+    <div>
+      <button class="mob-btn" id="pause-btn" onclick="togglePause()" style="font-size:13px;letter-spacing:1px;color:#ffe600;border-color:rgba(255,230,0,0.4);background:rgba(255,230,0,0.06);">⏸<br><span style="font-size:9px">정지</span></button>
     </div>
   </div>
 </div>
@@ -445,7 +445,7 @@ function draw(){
     ctx.save(); ctx.fillStyle='#00fff5'; ctx.shadowColor='#00fff5'; ctx.shadowBlur=10;
     ctx.fillRect(b.x-b.w/2,b.y,b.w,b.h); ctx.restore();
   }
-  if(gameState==='playing'&&(pInv===0||Math.floor(pInv/6)%2===0)) drawPlayer();
+  if(gameState==='playing'&&(pInv<=0||Math.floor(pInv/6)%2===0)) drawPlayer();
 }
 
 function drawPlayer(){
